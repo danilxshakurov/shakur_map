@@ -96,4 +96,18 @@ public class ShakurMapNullTest {
         assertEquals(3, map.size());
         assertTrue(map.containsValue(null));
     }
+
+    @Test
+    public void testOnlyOneNullKeyAllowed() {
+        map.put(null, 1);
+        assertEquals(1, map.get(null));
+        assertEquals(1, map.size());
+        map.put(null, 2);
+        assertEquals(2, map.get(null));
+        assertEquals(1, map.size());
+        map.put("key", 3);
+        assertEquals(2, map.size());
+        assertEquals(2, map.get(null));
+        assertEquals(3, map.get("key"));
+    }
 }
